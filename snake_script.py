@@ -6,7 +6,7 @@ from tkinter import messagebox
 
 
 class cube(object):
-    rows = 0
+    rows = 20
     w = 500
 
     def __init__(self, start, dirnx=1, dirny=0, color=(255, 0, 0)):
@@ -18,9 +18,9 @@ class cube(object):
     def move(self, dirnx, dirny):
         self.dirnx = dirnx
         self.dirny = dirny
-        self.pos(self.pos[0] + self.dirnx, self.pos[1] + self.dirny)
+        self.pos = (self.pos[0] + self.dirnx, self.pos[1] + self.dirny)
 
-    def draw(self, surface, eyes=False):
+    def draw(self, surface, eyes = False):
         dis = self.w // self.rows
         i = self.pos[0]
         j = self.pos[1]
@@ -31,7 +31,7 @@ class cube(object):
             centre = dis // 2
             radius = 3
             circleMiddle = (i * dis + centre - radius, j * dis + 8)
-            circleMiddle2 = (i * dis + centre - radius, j * dis + 8)
+            circleMiddle2 = (i * dis + dis - radius, j * dis + 8)
             pygame.draw.circle(surface, (0, 0, 0), circleMiddle, radius)
             pygame.draw.circle(surface, (0, 0, 0), circleMiddle2, radius)
 
@@ -84,9 +84,9 @@ class Snake(object):
                     if c.dirnx == -1 and c.pos[0] <= 0:
                         c.pos = (c.rows - 1, c.pos[1])
                     elif c.dirnx == 1 and c.pos[0] >= c.rows - 1:
-                        c.pos = (0, cpos[1])
+                        c.pos = (0, c.pos[1])
                     elif c.dirny == 1 and c.pos[1] >= c.rows - 1:
-                        c.pos = (cpos[1], 0)
+                        c.pos = (c.pos[1], 0)
                     elif c.dirny == -1 and c.pos[1] <= 0:
                         c.pos = (c.pos[0], c.rows - 1)
                     else:
@@ -149,10 +149,7 @@ def main():
     while flag:
         pygame.time.delay(50)
         clock.tick(10)
-
+        s.move()
         redrawWindow(win)
-
-    pass
-
 
 main()
