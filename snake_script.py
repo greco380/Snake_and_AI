@@ -161,15 +161,15 @@ def randomSnack(rows, items):
     return (x, y)
 
 
-def message_box(subject, content):
-    root = tk.Tk()
-    root.attributes("-topmost", True)
-    root.widthdraw()
-    message_box.showinfo(subject, content)
-    try:
-        root.destroy()
-    except:
-        pass
+# def message_box(subject, content):
+#     root = tk.Tk()
+#     root.attributes("-topmost", True)
+#     root.widthdraw()
+#     message_box.showinfo(subject, content)
+#     try:
+#         root.destroy()
+#     except:
+#         pass
 
 def main():
     global width, rows, s, snack
@@ -193,7 +193,7 @@ def main():
         for x in range(len(s.body)):
             if s.body[x].pos in list(map(lambda x:x.pos, s.body[x + 1:])):
                 print('Score: ', len(s.body))
-                message_box('You Lost!', 'Play again...')
+                #message_box('You Lost!', 'Play again...')
                 s.reset((10, 10))
                 break
         redrawWindow(win)
